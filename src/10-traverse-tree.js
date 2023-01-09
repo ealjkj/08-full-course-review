@@ -1,6 +1,19 @@
-const bTree = "(A,(B,(D),(E)),(C,(F,(H),(I)),(G,,(J))))";
-const myTree = "(5,(3,(1),(4)),(8,(7),(9)))";
+const printTree = (tree, order = "infix", cb) => {
+  const arrTree = convertToArray(tree);
+  const recursivePrint = (arr, order) => {
+    const [value, left, right] = arr;
 
+    if (order === "prefix") cb(value);
+    if (left) recursivePrint(left, order);
+    if (order !== "prefix" && order !== "postfix") cb(value);
+    if (right) recursivePrint(right, order);
+    if (order === "postfix") cb(value);
+  };
+
+  return recursivePrint(arrTree, order);
+};
+
+// Util
 const convertToArray = (tree) => {
   let modified = "";
   let closed = true;
@@ -25,21 +38,6 @@ const convertToArray = (tree) => {
     }
   }
   return eval(modified);
-};
-
-const printTree = (tree, order = "infix", cb) => {
-  const arrTree = convertToArray(tree);
-  const recursivePrint = (arr, order) => {
-    const [value, left, right] = arr;
-
-    if (order === "prefix") cb(value);
-    if (left) recursivePrint(left, order);
-    if (order !== "prefix" && order !== "postfix") cb(value);
-    if (right) recursivePrint(right, order);
-    if (order === "postfix") cb(value);
-  };
-
-  return recursivePrint(arrTree, order);
 };
 
 module.exports = printTree;
