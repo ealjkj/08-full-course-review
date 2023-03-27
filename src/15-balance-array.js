@@ -1,17 +1,25 @@
 const balanceArray = (array) => {
-  const total = sum(array);
-  if (total % 2 === 1) return -1;
+  let leftIndex = -1;
+  let rightIndex = array.length;
 
-  const half = total / 2;
+  let leftSum = 0;
+  let rightSum = 0;
 
-  let partialSum = 0;
-  for (let i = 0; i < array.length; i++) {
-    partialSum += array[i];
-    if (partialSum === half) return i;
-    else if (partialSum > half) return -1;
+  while (rightIndex - leftIndex > 1) {
+    if (leftSum <= rightSum) {
+      leftIndex += 1;
+      leftSum += array[leftIndex];
+    } else {
+      rightIndex -= 1;
+      rightSum += array[rightIndex];
+    }
   }
+
+  if (leftSum === rightSum) return leftIndex;
+  return -1;
 };
 
-const sum = (arr) => arr.reduce((prev, current) => prev + current);
+const input = [1, 2, 3, 4, 9, 9, 2, 7, 10, 13];
+balanceArray(input);
 
 module.exports = balanceArray;

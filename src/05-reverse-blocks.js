@@ -12,6 +12,12 @@ const reverseBlocks = (arr, blockSize) => {
   for (let i = 0; i + blockSize - 1 < arr.length; i += blockSize) {
     reverseSingleBlock(arr, i, i + blockSize - 1);
   }
+
+  if (arr.length % blockSize !== 0) {
+    const remainingStartIndex = arr.length - (arr.length % blockSize);
+    const remainingEndIndex = arr.length - 1;
+    reverseSingleBlock(arr, remainingStartIndex, remainingEndIndex);
+  }
 };
 
 module.exports = reverseBlocks;

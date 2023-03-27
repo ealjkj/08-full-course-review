@@ -1,0 +1,117 @@
+@media(min-width: 600px) {
+    .container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: "10em";
+    }
+
+
+    .header {
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+    }
+
+
+    /* LOGO */
+    .logo-section {
+        order: -1;
+        flex-grow: 1;
+        justify-content: flex-start;
+        padding-left: 1em;
+    }
+
+    .logo {
+        width: 7.5em;
+        height: 7.5em;
+    }
+
+    /* NAVBAR */
+
+    .nav-bar {
+        flex-grow: 1;
+        border-bottom: none;
+        font-size: larger;
+    }
+
+    .nav-bar ul {
+        padding-left: 5em;
+    }
+    .nav-bar li  img {
+        width: 1.5em;
+        display: inherit;
+    }
+
+    .img-wrapper {
+        display: flex;
+        justify-content: center;
+    }
+
+
+    /* HERO */
+
+
+    .hero-text {
+        padding-bottom: 4.2em;
+    }
+
+    .hero-title {
+        width: fit-content;
+        font-size: 25px;
+        opacity: 1;
+        padding: 0.3em 0.5em;
+    }
+
+    .hero-subtitle {
+        font-size: medium;
+        width: fit-content
+    }
+
+    /* SECONDARY NAV */
+
+    .secondary-nav {
+        font-size: larger 
+    }
+
+
+    /*  SIGNUP SECTION */
+    
+    .signup-section {
+        align-items: center;
+    }
+    .signup-icon {
+        width: 5em;
+    }
+    
+    .signup-text {
+        font-size: 14px;
+        width: 50%
+    }
+    .signup-form {
+        width: 35%;
+        display: flex;
+        flex-wrap: nowrap;
+    }
+
+    .signup-email-input, .signup-email-submit {
+        padding: 0;
+        height: 2em;
+    }
+
+
+    /*  STORIES */
+
+    .stories-section ul {
+        display: flex;
+        gap: 1.5em;
+    }
+
+    .stories-section li {
+        flex-grow: 1;
+    }
+
+    .stories-section * {
+        font-size: inherit;
+    }
+
+}

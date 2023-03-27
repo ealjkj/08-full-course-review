@@ -1,6 +1,9 @@
-const printTree = (tree, order = "infix", cb) => {
+const printTree = (tree, order, cb) => {
+  if (!["prefix", "postfix", "infix"].includes(order)) throw "Invalid order";
+
   const arrTree = convertToArray(tree);
   const recursivePrint = (arr, order) => {
+    if (arr.length !== 3 && arr.length !== 1) throw Error("Tree is not binary");
     const [value, left, right] = arr;
 
     if (order === "prefix") cb(value);
@@ -41,3 +44,10 @@ const convertToArray = (tree) => {
 };
 
 module.exports = printTree;
+
+const bTree = "(A,(B,(D),(E)),(C,(F,(H),(I)),(G,,(J))))";
+const arr = [];
+
+printTree(bTree, "infix", (value) => {
+  arr.push(value);
+});

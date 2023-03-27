@@ -1,70 +1,52 @@
-const greatestArea = (matrix) => {
-  if (matrix.length === 0) return 0;
+const greatestRectangleHist = (hist) => {
+  const stack = [];
+  let maxArea = 0;
 
-  const height = matrix.length;
-  const width = matrix[0].length;
-  const alreadyChecked = new Map();
+  for (let i = 0; i < hist.length; i++) {
+    let [topIndex, topBarLength] =
+      stack.length === 0 ? [-1, 0] : stack[stack.length - 1];
 
-  const convertTo1D = (x, y) => width * y + x;
+    while (hist[i] < topBarLength && stack.length > 0) {
+      const [_, height] = stack.pop();
+      [topIndex, topBarLength] =
+        stack.length === 0 ? [-1, 0] : stack[stack.length - 1];
 
-  let sum = 0;
-
-  // we can define a function to traverse a "tree"
-  const traverse = (x, y) => {
-    alreadyChecked.set(convertTo1D(x, y), true);
-    sum += 1;
-
-    // left
-    if (
-      x - 1 > 0 &&
-      matrix[y][x - 1] === 1 &&
-      !alreadyChecked.has(convertTo1D(x - 1, y))
-    ) {
-      traverse(x - 1, y);
+      const leftIndex = topIndex;
+      const rightIndex = i;
+      const area = (rightIndex - leftIndex - 1) * height;
+      maxArea = Math.max(area, maxArea);
     }
 
-    // bottom
-    if (
-      y + 1 < height &&
-      matrix[y + 1][x] === 1 &&
-      !alreadyChecked.has(convertTo1D(x, y + 1))
-    ) {
-      traverse(x, y + 1);
-    }
-
-    // right
-    if (
-      x + 1 < width &&
-      matrix[y][x + 1] === 1 &&
-      !alreadyChecked.has(convertTo1D(x + 1, y))
-    ) {
-      traverse(x + 1, y);
-    }
-  };
-
-  // Main loop
-  let max = 0;
-  for (let y = 0; y < height; y++) {
-    for (let x = 0; x < width; x++) {
-      // if we already checked that cell we just ignore it
-      if (alreadyChecked.has(width * y + x)) {
-        continue;
-      }
-
-      // If we have not checked that cell it means we need to find the area that contains thas cell
-      if (matrix[y][x] === 1) {
-        // reset sum variable
-        sum = 0;
-
-        // the traverse will modify the sum
-        traverse(x, y);
-
-        max = Math.max(sum, max);
-      }
-    }
+    stack.push([i, hist[i]]);
   }
 
-  return max;
+  let [topIndex, topBarLength] =
+    stack.length === 0 ? [-1, 0] : stack[stack.length - 1];
+
+  while (stack.length > 0) {
+    const [_, height] = stack.pop();
+    [topIndex, topBarLength] =
+      stack.length === 0 ? [-1, 0] : stack[stack.length - 1];
+
+    const leftIndex = topIndex;
+    const rightIndex = hist.length;
+    const area = (rightIndex - leftIndex - 1) * height;
+    maxArea = Math.max(area, maxArea);
+  }
+
+  return maxArea;
+};
+
+const greatestArea = (matrix) => {
+  let maxArea = 0;
+  let hist = Array(matrix[0].length).fill(0);
+  for (let row of matrix) {
+    // Form a histogram with the row. If the value is 0, reset the counter
+    hist = row.map((value, i) => (value !== 0 ? hist[i] + value : 0));
+
+    maxArea = Math.max(maxArea, greatestRectangleHist(hist));
+  }
+  return maxArea;
 };
 
 module.exports = greatestArea;

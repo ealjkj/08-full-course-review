@@ -27,5 +27,3 @@ const beginOfLoop = (linkedList) => {
 };
 
 module.exports = beginOfLoop;
-
-console.log(beginOfLoop(linkedList), getNode(linkedList, 3));

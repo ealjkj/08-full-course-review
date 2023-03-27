@@ -1,43 +1,42 @@
 const isPalindrome = (linkedList) => {
   const head = linkedList.head;
+  let listIsEven = false;
+
+  //empty list case
   if (head === null) {
     return true;
   }
 
   let slow = head;
   let fast = head;
+  const list = [];
 
   // Find the middle node and avoid loops
   while (fast !== null && fast.next !== null) {
-    console.log(fast.value, slow.value);
+    list.push(slow.value);
+
     slow = slow.next;
     fast = fast.next.next;
+
+    if (fast === null) {
+      listIsEven = true;
+    }
 
     if (slow === fast) {
       return false;
     }
   }
 
-  // Reverse the second half
-  let previousNode = null;
-  while (slow !== null) {
-    const nextNode = slow.next;
-    slow.next = previousNode;
-    previousNode = slow;
-    slow = nextNode;
+  if (!listIsEven) {
+    slow = slow.next;
   }
 
-  // Compare left side with right side
-  let left = head;
-  let right = previousNode;
-
-  while (right !== null) {
-    if (left.value !== right.value) {
+  while (slow !== null) {
+    if (slow.value !== list.pop()) {
       return false;
     }
 
-    left = left.next;
-    right = right.next;
+    slow = slow.next;
   }
 
   return true;

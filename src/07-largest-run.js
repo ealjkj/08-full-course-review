@@ -73,7 +73,4 @@ const runLength = (run) => {
   return run[1] - run[0] + 1;
 };
 
-const input = "1233144454554";
-const longestRun = longestRunOfTwoNumbers(input);
-
 module.exports = longestRunOfTwoNumbers;

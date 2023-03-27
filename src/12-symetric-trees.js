@@ -2,9 +2,9 @@ const isSymetricTree = (tree) => {
   // If the tree has no children, it is symetric
   if (tree.length === 1) return true;
 
-  const [value, left, right] = tree;
+  const [_, left, right] = tree;
 
-  //If it has only one, left or right it is not symetric
+  //If tree has only one child (left or right) it is not symetric
   if (Boolean(left) !== Boolean(right)) {
     return false;
   }
@@ -39,7 +39,7 @@ function* levelOrderTraversal(tree, order = "ltr") {
   while (queue.length !== 0) {
     const [node, level] = queue.shift(tree);
     yield [node, level];
-    const [value, left, right] = node;
+    const [_, left, right] = node;
 
     // order can be ltr or rtl
     let firstNode = left;

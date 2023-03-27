@@ -25,3 +25,9 @@ test("Loop", () => {
   const linkedList = LinkedList.fromArray([1, 2, 2, 3, 3, 2, 2, 1], 3);
   expect(isPalindrome(linkedList)).toBe(false);
 });
+
+test("Function is not destructive", () => {
+  const linkedList = LinkedList.fromArray([1, 2, 2, 3, 3, 2, 2, 1]);
+  isPalindrome(linkedList);
+  expect(isPalindrome(linkedList)).toBe(true);
+});

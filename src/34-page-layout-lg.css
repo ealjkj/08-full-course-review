@@ -1,0 +1,153 @@
+@font-face {
+    font-family: apple-chancery;
+    src: url("../itkglob-assets/html-css-assets/apple-chancery.ttf");
+}
+
+@media(min-width: 1000px) {
+    
+    :root {
+        --header-width: 20%;
+    }
+    .header {
+        padding: 0 1em;
+        width: var(--header-width);
+        flex-direction: column;
+        height: fit-content;
+    } 
+
+    .logo-section {
+        padding: 0;
+        width: 100%;
+        justify-content: left;
+        flex-grow: 0;
+    }
+
+    .nav-bar {
+        width: 100%;
+        flex-grow: 0;
+    }
+
+    .nav-bar ul {
+        flex-direction: column;
+        padding-left: 0;
+        gap: 1em;
+    }
+
+    .nav-bar ul li {
+        display: flex;
+        justify-content: left;
+    }
+
+
+    /* EXTRA INFO*/
+
+    .extra-info {
+        display: block;
+    }
+
+    .extra-info-title {
+        border-bottom:  dashed black 2px;
+    }   
+
+    .latest-tweet-content {
+        font-size: 14px;
+        font-weight: bold;
+        font-family: var(--secondary-font);
+    }
+
+    .join-the-conversation-button {
+        color: var(--secondary-color);
+        padding: 0.3em;
+        
+        width: fit-content;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+        border: 1px solid #aaa;
+        border-radius: 5px;
+        font-size: 15px
+    }
+    .join-the-conversation-button p {
+        margin: 0;
+    }
+
+    .join-the-conversation-button img {
+        height: 1em;
+        margin-right: 0.3em;
+    }
+    /* -------------MAIN-----------*/
+    
+    .main {
+        width: calc(100% - var(--header-width));
+        /* height: fit-content; */
+    }
+
+
+    /* ------------- Hero -----------*/
+
+    .hero-section {
+        height: 22em;
+        overflow-y: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 0.2em; 
+    }
+
+    /* SECONDARY NAV*/
+
+    .secondary-nav > ul > li {
+        text-align: left;
+        padding: 1em;
+    }
+
+    .secondary-nav > ul > li::after {
+        display: block;
+        font-size: small;
+        font-weight: normal;
+        font-family: var(--secondary-font);
+        text-transform: capitalize;
+    }
+
+    .sec-nav-tutorials::after  {
+        content: "Learn the latest";
+    }
+    .sec-nav-news::after  {
+        content: "Know what is happening";
+    }
+    .sec-nav-top-tips::after  {
+        content: "Must know tricks";
+    }
+    .sec-nav-contacts::after  {
+        content: "We want to hear from you!";
+    }
+    
+
+    /* FOOTER */
+    .footer {
+        padding-top: 1em;
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        border-top:  dashed black 2px;
+    }
+
+
+    .footer p {
+        margin: 0;
+        color: gray;
+    }
+
+    .footer a {
+        color: var(--secondary-color)
+    }
+
+
+    .footer-logos img {
+        color: gray;
+        width: 2em;
+        filter: grayscale(1);
+    }
+
+}   

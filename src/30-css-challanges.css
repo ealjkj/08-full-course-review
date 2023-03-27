@@ -1,0 +1,127 @@
+/*  ------------------------------------------- */
+/*  ------------  EXERCISE A ------------------ */
+/*  ------------------------------------------- */
+
+
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    font-size: 20px;
+}
+
+.fancy-button {
+    --buttonHeight: 5rem;
+    --constant: 4; 
+
+    display: inline-block;
+    margin: 2em;
+    padding: 0.8rem;
+    font-size: 1.9rem;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-family: sans-serif;
+    font-weight: 700;
+
+    color: #555;
+
+
+    background: linear-gradient(0deg, #adadad 0%, #c8c8c8 50%, #cecece 50%, #e0e0e0 100%);
+    height: var(--buttonHeight);
+    width: calc(var(--buttonHeight)*var(--constant));
+
+    text-align: center;
+    border-radius: 0.6rem;
+
+    box-shadow: 0 0.04rem 0.1rem 0.06rem, 0em 0 0 0.5rem  #cbcbcb,0em 0 0 0.61rem #fff, 0em 0 0 0.7rem, 0em 0 0.4rem 0.7rem;
+
+}
+
+.fancy-button {
+    text-shadow: 0 0.05rem 0 #fff;
+
+}
+
+.fancy-button::before, .fancy-button::after {
+    content: "\2605";
+    font-size: 1.2em;
+    padding: 1rem
+
+}
+
+
+/*  ------------------------------------------- */
+/*  ------------  EXERCISE B ------------------ */
+/*  ------------------------------------------- */
+
+form {
+    margin: 4em;
+    display: inline-block;
+}
+
+form * {
+    font-family: "Arial" ;
+    font-size: 1.4rem;
+    text-shadow: 0px 0px 1.1px;
+}
+
+.form-field {
+    --blackColor: #111;
+    --moveToTop: -1.7rem;
+    display: inline;
+    position: relative;
+
+}
+
+
+.form-field::after {
+    content: attr(data-hint);
+    
+    position: absolute;
+    left: 0;
+    top: var(--moveToTop);
+    
+    background-color: var(--blackColor);
+    color: white;
+    filter: drop-shadow(0.1rem 0.1rem 0.1rem var(--blackColor));
+    
+    font-size: 0.8rem;
+    padding: 0.2rem;
+}
+
+
+.form-field::before {
+    content: " ";
+    text-shadow: 1px 1px 10px 2rem var(--blackColor) ;
+    border-top: 1rem solid var(--blackColor);
+    border-right: 1rem solid transparent;
+    border-left: 1rem solid transparent;
+
+    border-bottom: none;
+
+    position: absolute;
+    left: 0.9rem;
+    top: calc(var(--moveToTop) + 0.6rem);
+    filter: drop-shadow(0.1rem 0.1rem 0.2rem var(--blackColor));
+}
+
+.form-field input {
+    border: 0;
+    border-bottom: 0.05rem solid black;
+    margin-left: -0.1rem
+}
+
+form button {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: 1rem;
+
+    background-color: #ff6348;
+    color: #fff;
+    display: block;
+    margin: 1rem auto;
+    padding: 0.45rem 1.4rem;
+    border-radius: 1.5rem;
+    border: none;
+}

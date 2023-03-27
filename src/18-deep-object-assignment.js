@@ -5,14 +5,17 @@ function set(obj, path, value) {
 
   let currentObj = obj;
   for (let prop of pathProps) {
-    currentObj[prop] = {};
+    if (!Object.keys(currentObj).includes(prop)) {
+      currentObj[prop] = {};
+    }
+
     currentObj = currentObj[prop];
   }
 
+  if (typeof currentObj !== "object") {
+    throw Error("Cannot assing a property to a non-object");
+  }
   currentObj[lastProp] = value;
 }
 
-const obj = { name: "jorge", wife: "adriana" };
-set(obj, "path.to.deeply.nested.property", 42);
-
-console.log(obj.path.to.deeply.nested.property);
+module.exports = set;
