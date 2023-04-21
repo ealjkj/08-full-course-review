@@ -1,5 +1,5 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
-import LineChart from "../MyComponents/LineChart";
+import LineChart from "../components/LineChart";
 
 export default {
   title: "Charts/LineChart",

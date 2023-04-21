@@ -36,3 +36,11 @@ test("Changing one value of the last element of the path", () => {
 
   expect(obj).toStrictEqual({ a: 1, b: [1, 2, 3] });
 });
+
+test("You should be able to asign functions", () => {
+  const fun = () => {};
+  const obj = { a: 1, b: [1, 2] };
+  set(obj, "a", fun);
+
+  expect(obj).toStrictEqual({ a: fun, b: [1, 2] });
+});

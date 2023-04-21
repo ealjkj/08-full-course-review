@@ -3,3 +3,14 @@
 // expect(element).toHaveTextContent(/react/i)
 // learn more: https://github.com/testing-library/jest-dom
 import "@testing-library/jest-dom";
+import { createProxyMiddleware } from "http-proxy-middleware";
+
+export default function setupTests(app: any) {
+  app.use(
+    "/api",
+    createProxyMiddleware({
+      target: "http://localhost:3002",
+      changeOrigin: true,
+    })
+  );
+}

@@ -3,7 +3,6 @@ const printTree = (tree, order, cb) => {
 
   const arrTree = convertToArray(tree);
   const recursivePrint = (arr, order) => {
-    if (arr.length !== 3 && arr.length !== 1) throw Error("Tree is not binary");
     const [value, left, right] = arr;
 
     if (order === "prefix") cb(value);
@@ -16,38 +15,51 @@ const printTree = (tree, order, cb) => {
   return recursivePrint(arrTree, order);
 };
 
-// Util
-const convertToArray = (tree) => {
-  let modified = "";
-  let closed = true;
+const convert = (string, startIndex) => {
+  if (string[startIndex] === ",") return { index: startIndex - 1, node: null };
+  if (string[startIndex] === ")" && startIndex === string.length - 1)
+    return { index: startIndex - 1, node: null };
+  if (string[startIndex] !== "(") throw new Error("not valid node");
 
-  for (let i = 0; i < tree.length; i++) {
-    const element = tree[i];
-
-    if ((element === ")" || element === ",") && closed === false) {
-      modified += "'";
-      closed = true;
-    }
-
-    if (element === "(") {
-      modified += "['";
-      closed = false;
-    } else if (element === ")") {
-      modified += "]";
-    } else if (element === ",") {
-      modified += ",";
-    } else {
-      modified += element;
-    }
+  let i = startIndex + 1;
+  while (string[i] !== "," && i < string.length) {
+    if (string[i] === ")")
+      return { index: i, node: [string.slice(startIndex + 1, i)] };
+    if (string[i] === "(") throw new Error("Value can not include parenthesis");
+    i++;
   }
-  return eval(modified);
+
+  // The value should be the index from startIndex to i
+  if (i === string.length - 1 && string[i] !== ")") {
+    throw new Error("non-empty trees should end with parenthesis");
+  }
+
+  const value = string.slice(startIndex + 1, i);
+
+  // First child
+  let { index, node } = convert(string, i + 1);
+  const firstNode = node;
+
+  if (string[index + 1] === ")") {
+    return { index: index + 1, node: [value, firstNode] };
+  }
+
+  if (string[index + 1] !== ",")
+    throw new Error("before the second node, there should be a comma");
+
+  // Second child
+  const second = convert(string, index + 2);
+  const secondNode = second.node;
+  index = second.index;
+
+  if (string[index + 1] !== ")")
+    throw new Error("non-empty nodes should end with parenthesis");
+
+  return { index: index + 1, node: [value, firstNode, secondNode] };
+};
+
+const convertToArray = (string) => {
+  return convert(string, 0).node;
 };
 
 module.exports = printTree;
-
-const bTree = "(A,(B,(D),(E)),(C,(F,(H),(I)),(G,,(J))))";
-const arr = [];
-
-printTree(bTree, "infix", (value) => {
-  arr.push(value);
-});

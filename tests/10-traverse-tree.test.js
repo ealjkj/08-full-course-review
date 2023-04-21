@@ -61,3 +61,26 @@ test("Throw error with an invalid tree. Not right syntax. Just a list", () => {
 
   expect(() => printTree(bTree, "infix", () => {})).toThrow();
 });
+
+test("Should accept tree with valid syntax even without the seccond node", () => {
+  const bTree = "(A,(B))";
+
+  expect(() => printTree(bTree, "infix", () => {})).not.toThrow();
+});
+
+test("Should accept tree with valid syntax even without the seccond node. Including a final comma", () => {
+  const bTree = "(A,(B),)";
+
+  expect(() => printTree(bTree, "infix", () => {})).not.toThrow();
+});
+test("Should accept tree with valid syntax even with only two commas", () => {
+  const bTree = "(A,,)";
+
+  expect(() => printTree(bTree, "infix", () => {})).not.toThrow();
+});
+
+test("Should reject tree with invalid syntax when there are 3+ commas", () => {
+  const bTree = "(A,(B),(C),)";
+
+  expect(() => printTree(bTree, "infix", () => {})).toThrow();
+});

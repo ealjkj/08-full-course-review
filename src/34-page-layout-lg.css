@@ -22,6 +22,16 @@
         flex-grow: 0;
     }
 
+    .logo {
+        padding: 2rem;
+    }
+
+    .logo p {
+        font-size: 1rem;
+        padding: 1.5rem;
+    }
+
+
     .nav-bar {
         width: 100%;
         flex-grow: 0;
@@ -53,6 +63,10 @@
         font-size: 14px;
         font-weight: bold;
         font-family: var(--secondary-font);
+    }
+
+    .latest-tweet-tag {
+        color: var(--secondary-color);
     }
 
     .join-the-conversation-button {

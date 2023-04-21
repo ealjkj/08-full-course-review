@@ -34,7 +34,7 @@
     text-align: center;
     border-radius: 0.6rem;
 
-    box-shadow: 0 0.04rem 0.1rem 0.06rem, 0em 0 0 0.5rem  #cbcbcb,0em 0 0 0.61rem #fff, 0em 0 0 0.7rem, 0em 0 0.4rem 0.7rem;
+    box-shadow: 0 0.04rem 0.1rem 0.06rem, 0em 0 0 0.5rem  #cbcbcb,0em 0 0 0.61rem #fff, 0em 0 0 0.7rem, 0em 0 0.4rem 0.7rem, inset 0 2.5rem 0 -0.0rem #e0e0e0;
 
 }
 
@@ -110,6 +110,10 @@ form * {
     border: 0;
     border-bottom: 0.05rem solid black;
     margin-left: -0.1rem
+}
+
+.form-field:focus-visible {
+    outline: none;
 }
 
 form button {

@@ -1,6 +1,3 @@
-import useLocalStorage from "./hooks/useLocalStorage";
-import useSessionStorage from "./hooks/useSessionStorage";
-import { useState } from "react";
 import useIndexedDB from "./hooks/useIndexedDB";
 
 export default function Counter() {

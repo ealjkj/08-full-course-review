@@ -8,13 +8,19 @@
     <script defer src="11-parent-combinator.js"></script>
 </head>
 <body>
-    <section>
-        <div id="1" class="note">
-          <div id="2" class="note">
-            <input type="checkbox" class="is-complete" checked> 
-          </div>
-        </div>
-      </section>
+  <section>
+    <div data-id="1" class="note">
+      <input type="checkbox" class="is-complete" checked>
+    </div>
+    <div data-id="2" class="note"></div>
+    <div data-id="3" class="note">
+      <input type="checkbox" class="is-complete" checked>
+    </div>
+    <div data-id="4" class="note"></div>
+    <div data-id="5" class="note">
+      <input type="checkbox" class="is-complete" checked>
+    </div>
+  </section>
      
 </body>
 </html>

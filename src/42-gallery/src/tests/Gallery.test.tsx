@@ -3,6 +3,7 @@ import { Gallery } from "../components/Gallery";
 import { store } from "../store";
 import { Provider } from "react-redux";
 import { fireEvent } from "@testing-library/react";
+import "../setupTests";
 
 test("Scrolling down should make a fetch", async () => {
   const count = 3;
@@ -12,7 +13,7 @@ test("Scrolling down should make a fetch", async () => {
     </Provider>
   );
 
-  const res = await fetch("http://localhost:3002/gallery/1?count=3&page=1");
+  const res = await fetch("http://localhost:3002/api/gallery/1?count=3&page=1");
   const data = await res.json();
 
   await waitFor(() => {
@@ -31,7 +32,7 @@ test("Clicking page 2 should render next page", async () => {
 
   fireEvent.click(screen.getByText("2"));
 
-  const res = await fetch("http://localhost:3002/gallery/1?count=3&page=2");
+  const res = await fetch("http://localhost:3002/api/gallery/1?count=3&page=2");
   const data = await res.json();
 
   await waitFor(() => {

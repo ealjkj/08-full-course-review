@@ -12,10 +12,14 @@ function set(obj, path, value) {
     currentObj = currentObj[prop];
   }
 
-  if (typeof currentObj !== "object") {
+  if (typeof currentObj !== "object" && typeof currentObj !== "function") {
     throw Error("Cannot assing a property to a non-object");
   }
   currentObj[lastProp] = value;
 }
 
+const obj = () => {};
+set(obj, "b.a", 3);
+
+console.log(obj.b.a);
 module.exports = set;

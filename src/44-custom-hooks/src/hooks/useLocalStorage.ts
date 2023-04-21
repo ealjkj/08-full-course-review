@@ -1,23 +1,7 @@
-import { useState, useEffect } from 'react';
+import useStorage from "./useStorage";
 
-function useLocalStorage({initState, key} : {initState : any, key: string}) {
-  const savedItem = localStorage.getItem(key); 
-  
-  if(savedItem) {
-    try {
-      initState = JSON.parse(savedItem);
-    } catch(e) {
-      initState = savedItem;
-    }
-  }
-
-  const [state, setState] = useState(initState);
-
-  useEffect(() => {
-    localStorage.setItem(key, JSON.stringify(state))
-  }, []);
-
-  return [state, setState]; 
+function useLocalStorage({ initState, key }: { initState: any; key: string }) {
+  return useStorage({ initState: initState, key: key, storage: localStorage });
 }
 
 export default useLocalStorage;

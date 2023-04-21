@@ -1,22 +1,17 @@
-import { useState, useEffect } from 'react';
+import useStorage from "./useStorage";
 
-function useSessionStorage({initState, key} : {initState : any, key: string}) {
-  const savedItem = sessionStorage.getItem(key); 
-  if(savedItem) {
-    try {
-      initState = JSON.parse(savedItem);
-    } catch(e) {
-      initState = savedItem;
-    }
-  }
-  
-  const [state, setState] = useState(initState);
-
-  useEffect(() => {
-    sessionStorage.setItem(key, JSON.stringify(state))
-  }, []);
-
-  return [state, setState];
+function useSessionStorage({
+  initState,
+  key,
+}: {
+  initState: any;
+  key: string;
+}) {
+  return useStorage({
+    initState: initState,
+    key: key,
+    storage: sessionStorage,
+  });
 }
 
 export default useSessionStorage;

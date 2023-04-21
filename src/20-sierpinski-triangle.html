@@ -35,6 +35,25 @@
             margin: 1px
         }
 
+        #number-form::before {
+            content: '1';
+            display: inline;
+            position: absolute;
+            left: -2em;
+            top: 50%
+        }
+
+        #number-form::after {
+            content: '8';
+            display: inline;
+            position: absolute;
+            right: -2em;
+            top: 50%
+        }
+        #number-form {
+            display: inline;
+            position: relative;
+        }
 
     </style>
 </head>
@@ -44,10 +63,11 @@
         <form class="number-form" id="number-form">
             <label for="number-input">
                 <p>Input a number</p>
-                <input id="number-input" type="text">
-                <input type="submit">
+                <input id="number-input" type="range" min="1" max="8" value="1">
+                <!-- <input type="submit"> -->
             </label>
         </form>
+        <p id="number-display"></p>
         <div id="triangle-container" class="triangle-container"></div>
     </div>
 </body>

@@ -9,10 +9,10 @@ class PromiseCaller {
       const [firstTaskCalled, index] = this.indexedTaskArray.shift();
       return firstTaskCalled()
         .then((value) => {
-          this.answers[index] = value;
+          this.answers[index] = { value };
         })
         .catch((error) => {
-          this.answers[index] = error;
+          this.answers[index] = { error };
         })
         .finally(() => {
           return this.call();

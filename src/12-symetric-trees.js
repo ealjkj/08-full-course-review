@@ -1,63 +1,50 @@
-const isSymetricTree = (tree) => {
-  // If the tree has no children, it is symetric
-  if (tree.length === 1) return true;
+const isSymmetricTree = (tree) => {
+  if (tree.length === 1) {
+    // If the tree has no children, it is symmetric
+    return true;
+  }
 
-  const [_, left, right] = tree;
+  const [, left, right] = tree;
 
-  //If tree has only one child (left or right) it is not symetric
+  // If tree has only one child (left or right) it is not symmetric
   if (Boolean(left) !== Boolean(right)) {
     return false;
   }
 
-  //Creating iterators for traversing left and right children
-  const rightTraverse = levelOrderTraversal(right, "rtl");
-  const leftTraverse = levelOrderTraversal(left, "ltr");
+  const leftQueue = [left];
+  const rightQueue = [right];
 
-  for (const [nodeFromLeft, levelFromLeft] of leftTraverse) {
-    const fromRight = rightTraverse.next();
-    if (fromRight.done) return false;
-    const [nodeFromRight, levelForRight] = fromRight.value;
+  while (leftQueue.length !== 0) {
+    const leftNode = leftQueue.shift();
+    const rightNode = rightQueue.shift();
 
-    // values and levels should be equal for the tree to be symetric  (The value for a node is at index 0)
-    if (
-      nodeFromLeft[0] !== nodeFromRight[0] ||
-      levelFromLeft !== levelForRight
-    ) {
+    // If just one of the nodes is null, it means there is no symmetry
+    if (Boolean(leftNode) !== Boolean(rightNode)) {
       return false;
     }
-  }
-  // If loop finishes and there is another right node, implies asymetry
-  if (!rightTraverse.next().done) return false;
 
+    // If both nodes are null, the next iteration can start.
+    if (!leftNode) continue;
+
+    if (leftNode[0] !== rightNode[0]) {
+      return false;
+    }
+
+    const [, leftFromLeft, rightFromLeft] = leftNode;
+    const [, leftFromRight, rightFromRight] = rightNode;
+
+    leftQueue.push(leftFromLeft);
+    rightQueue.push(rightFromRight);
+
+    leftQueue.push(rightFromLeft);
+    rightQueue.push(leftFromRight);
+  }
+
+  if (rightQueue.length > 0) return false;
   return true;
 };
 
-function* levelOrderTraversal(tree, order = "ltr") {
-  // We include the root on the queue and we also store the level were we are at
-  const queue = [[tree, 1]];
+const bTree = [1, [2, [3], [4, [5]]], [2, [4, , [5]], [3]]];
+console.log(isSymmetricTree(bTree));
 
-  while (queue.length !== 0) {
-    const [node, level] = queue.shift(tree);
-    yield [node, level];
-    const [_, left, right] = node;
-
-    // order can be ltr or rtl
-    let firstNode = left;
-    let secondNode = right;
-
-    if (order === "rtl") {
-      firstNode = right;
-      secondNode = left;
-    }
-
-    if (firstNode) {
-      queue.push([firstNode, level + 1]);
-    }
-
-    if (secondNode) {
-      queue.push([secondNode, level + 1]);
-    }
-  }
-}
-
-module.exports = isSymetricTree;
+module.exports = isSymmetricTree;

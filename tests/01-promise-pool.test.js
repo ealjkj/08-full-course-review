@@ -52,7 +52,14 @@ test("All tasks are sucessfully resolved", async () => {
 
   await clock.tickAsync(1);
   expect(fn).toHaveBeenCalledTimes(6);
-  await expect(result).resolves.toStrictEqual([1, 2, 3, 4, 5, 6]);
+  await expect(result).resolves.toStrictEqual([
+    { value: 1 },
+    { value: 2 },
+    { value: 3 },
+    { value: 4 },
+    { value: 5 },
+    { value: 6 },
+  ]);
 });
 
 test("Some promises reject", async () => {
@@ -89,12 +96,12 @@ test("Some promises reject", async () => {
   await clock.tickAsync(1);
   expect(fn).toHaveBeenCalledTimes(6);
   await expect(result).resolves.toStrictEqual([
-    1,
-    "error",
-    3,
-    "error",
-    "error",
-    6,
+    { value: 1 },
+    { error: "error" },
+    { value: 3 },
+    { error: "error" },
+    { error: "error" },
+    { value: 6 },
   ]);
 });
 
@@ -132,12 +139,12 @@ test("Edge case: Poolsize 1", async () => {
   await clock.tickAsync(1);
   expect(fn).toHaveBeenCalledTimes(6);
   await expect(result).resolves.toStrictEqual([
-    1,
-    "error",
-    3,
-    "error",
-    "error",
-    6,
+    { value: 1 },
+    { error: "error" },
+    { value: 3 },
+    { error: "error" },
+    { error: "error" },
+    { value: 6 },
   ]);
 });
 
@@ -169,12 +176,12 @@ test("Edge case: Poolsize equals the total of tasks", async () => {
   await clock.tickAsync(1);
   expect(fn).toHaveBeenCalledTimes(6);
   await expect(result).resolves.toStrictEqual([
-    1,
-    "error",
-    3,
-    "error",
-    "error",
-    6,
+    { value: 1 },
+    { error: "error" },
+    { value: 3 },
+    { error: "error" },
+    { error: "error" },
+    { value: 6 },
   ]);
 });
 
@@ -206,11 +213,11 @@ test("Edge case: Poolsize greater than the total of tasks", async () => {
   await clock.tickAsync(1);
   expect(fn).toHaveBeenCalledTimes(6);
   await expect(result).resolves.toStrictEqual([
-    1,
-    "error",
-    3,
-    "error",
-    "error",
-    6,
+    { value: 1 },
+    { error: "error" },
+    { value: 3 },
+    { error: "error" },
+    { error: "error" },
+    { value: 6 },
   ]);
 });

@@ -1,6 +1,6 @@
 @font-face {
     font-family: apple-chancery;
-    src: url("../itkglob-assets/html-css-assets/apple-chancery.ttf");
+    src: url("./html-css-assets/apple-chancery.ttf");
 }
 
 * {
@@ -8,7 +8,7 @@
     padding: 0;
     margin-left: 0;
     margin-right: 0;
-    --secondary-color: rgb(12, 217, 217);
+    --secondary-color: #48c8c8;
     --secondary-font: apple-chancery, cursive;
 }
 
@@ -43,7 +43,7 @@
 }
 
 .logo {
-    background: #aaa url("../itkglob-assets/html-css-assets/logo.jpg") no-repeat;
+    background: #aaa url("./html-css-assets/logo.jpg") no-repeat;
     background-size: cover;
     background-position: center;
     color: white;
@@ -54,6 +54,7 @@
     text-align: center;
     font-family: var(--secondary-font);
     
+    padding: 4rem;
     width: 4.5em;
     height: 4.5em;
     border-radius: 50%;
@@ -123,9 +124,9 @@
 }
 
 .secondary-nav > ul > li {
-    background-color: rgb(182, 242, 242);
+    background-color: #ebf7f5;
     font-weight: bold;
-    color: rgb(0, 157, 157);
+    color: var(--secondary-color);
     display: inline-block;
     border-left: rgb(153, 211, 211) solid 2px;
 
@@ -135,7 +136,7 @@
 }
 
 .secondary-nav > ul > li:nth-child(2) {
-    background-color: rgb(153, 211, 211);
+    background-color: #d1ebe7;
 }
 
 

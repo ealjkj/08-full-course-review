@@ -1,4 +1,5 @@
 const number = document.getElementById("number-input");
+const display = document.getElementById("number-display");
 
 const equilateralTriangle = (size, color) => {
   const height = (size * Math.sqrt(3)) / 2;
@@ -53,7 +54,7 @@ function sierpinski(n, size) {
 
 // Event
 
-document.getElementById("number-form").addEventListener("submit", (event) => {
+document.getElementById("number-input").addEventListener("input", (event) => {
   event.preventDefault();
 
   // Clean the "canvas"
@@ -66,4 +67,5 @@ document.getElementById("number-form").addEventListener("submit", (event) => {
 
   const s = sierpinski(Number(number.value), 150);
   $triangleContainer.appendChild(s);
+  display.textContent = number.value;
 });
