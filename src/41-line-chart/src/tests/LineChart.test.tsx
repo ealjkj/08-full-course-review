@@ -1,13 +1,7 @@
-import { getByRole, render, screen, waitFor } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import LineChart from "../components/LineChart";
 import "../setupTests";
-// import { setupJestCanvasMock } from "jest-canvas-mock";
 import "jest-canvas-mock";
-
-// beforeEach(() => {
-//   jest.resetAllMocks();
-//   setupJestCanvasMock();
-// });
 
 describe("LineChart", () => {
   it("should render a line chart", () => {

@@ -84,3 +84,15 @@ test("Should reject tree with invalid syntax when there are 3+ commas", () => {
 
   expect(() => printTree(bTree, "infix", () => {})).toThrow();
 });
+
+test("Should reject tree with anything at the right of the ending parenthesis", () => {
+  const bTree = "(A,(B),(C)),";
+
+  expect(() => printTree(bTree, "infix", () => {})).toThrow();
+});
+
+test("Should reject tree with nested parenthesis ", () => {
+  const bTree = "(A)()";
+
+  expect(() => printTree(bTree, "infix", () => {})).toThrow();
+});

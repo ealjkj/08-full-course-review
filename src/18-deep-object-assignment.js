@@ -18,8 +18,4 @@ function set(obj, path, value) {
   currentObj[lastProp] = value;
 }
 
-const obj = () => {};
-set(obj, "b.a", 3);
-
-console.log(obj.b.a);
 module.exports = set;

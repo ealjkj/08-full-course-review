@@ -1,6 +1,3 @@
-import { useState, useEffect } from "react";
-import { take } from "redux-saga/effects";
-import { eventChannel, END, runSaga } from "redux-saga";
 import LineChart from "./LineChart";
 import { useSelector } from "react-redux";
 

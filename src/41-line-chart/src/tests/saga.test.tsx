@@ -8,11 +8,9 @@ const testSubscribe = (emitter: any, end: () => void) => {
     if (secs > 0) {
       emitter(secs * secs);
     } else {
-      // this causes the channel to close
       end();
     }
   }, 1);
-  // The subscriber must return an unsubscribe function
   return () => {
     clearInterval(iv);
   };

@@ -112,7 +112,7 @@ form * {
     margin-left: -0.1rem
 }
 
-.form-field:focus-visible {
+.form-field:focus-visible, .form-field:focus {
     outline: none;
 }
 

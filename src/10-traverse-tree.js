@@ -59,7 +59,8 @@ const convert = (string, startIndex) => {
 };
 
 const convertToArray = (string) => {
-  return convert(string, 0).node;
+  const conversion = convert(string, 0);
+  if (conversion.index !== string.length - 1) throw Error("not valid input");
+  return conversion.node;
 };
-
 module.exports = printTree;
